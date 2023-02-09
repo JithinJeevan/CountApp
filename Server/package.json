@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jithin",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "html-to-text": "^9.0.3",
+    "mongoose": "^6.3.3",
+    "nodemon": "^2.0.20",
+    "request": "^2.88.2"
+  }
+}
