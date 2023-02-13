@@ -5,7 +5,7 @@ var request = require("request");
 const { compile } = require("html-to-text");
 const cors = require('cors');
 const path = require("path");
-require("dotenv").config()
+require("dotenv").config();
 
 
 const app = express();
