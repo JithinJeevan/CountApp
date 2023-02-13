@@ -10,11 +10,12 @@
   },
   "engines": {
     "node": "16.16.0"
-},
+  },
   "author": "Jithin",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
     "express": "^4.18.1",
     "html-to-text": "^9.0.3",
     "mongoose": "^6.3.3",
