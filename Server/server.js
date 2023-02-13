@@ -4,17 +4,18 @@ const Register = require("./registerModel");
 var request = require("request");
 const { compile } = require("html-to-text");
 const cors = require('cors');
+const path = require("path");
 
 const app = express();
 app.use(cors());
 
-const port = 7397;
+const port = process.env.PORT || 7397;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "client", "build")))
 
-mongoose.connect(
-  "mongodb+srv://Jithin_88jeevan:071263%40Jj@cluster0.x0rbw.mongodb.net/myCountApp?retryWrites=true&w=majority"
-);
+
+mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://Jithin_88jeevan:071263%40Jj@cluster0.x0rbw.mongodb.net/myCountApp?retryWrites=true&w=majority")
 
 
 app.post("/api/register", async (req, res) => {
@@ -52,6 +53,8 @@ app.post("/api/register", async (req, res) => {
 
 
 app.put("/api/update/:id/:status",async (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE"); 
   const id = req.params.id
   const status = req.params.status
   try{
@@ -68,6 +71,8 @@ app.put("/api/update/:id/:status",async (req, res) => {
 });
 
 app.delete("/api/delete/:id", async(req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE"); 
   const id = req.params.id
  
   try{
@@ -83,7 +88,8 @@ app.delete("/api/delete/:id", async(req, res) => {
 });
 
 app.get("/api/table", async(req, res) => {
- 
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE"); 
   try{
   
   const table = await  Register.find()
@@ -92,6 +98,10 @@ app.get("/api/table", async(req, res) => {
     res.send({status:500,success:false,data:""});
 
   }
+});
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
 
 app.listen(port, () => {

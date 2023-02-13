@@ -3,7 +3,7 @@ import axios from "axios";
 const postFetchTableData = async (data) => {
   try {
     const result = await axios
-      .post("http://localhost:7397/api/register", data)
+      .post("/api/register", data)
       .then((response) => {
         return response;
       });
@@ -16,7 +16,7 @@ const postFetchTableData = async (data) => {
 const putStatusUpdate = async (id,status) => {
   try {
     const result = await axios
-      .put(`http://localhost:7397/api/update/${id}/${status}`)
+      .put(`/api/update/${id}/${status}`)
       .then((response) => {
         return response;
       });
@@ -29,7 +29,7 @@ const putStatusUpdate = async (id,status) => {
 const getTableData = async () => {
     try {
       const result = await axios
-        .get(`http://localhost:7397/api/table`)
+        .get(`/api/table`)
         .then((response) => {
           return response;
         });
@@ -42,7 +42,7 @@ const getTableData = async () => {
   const deleteData = async (id) => {
     try {
       const result = await axios
-        .delete(`http://localhost:7397/api/delete/${id}`)
+        .delete(`/api/delete/${id}`)
         .then((response) => {
           return response;
         });
