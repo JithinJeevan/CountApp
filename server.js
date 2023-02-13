@@ -1,10 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const Register = require("./registerModel");
+const Register = require("./model/registerModel");
 var request = require("request");
 const { compile } = require("html-to-text");
 const cors = require('cors');
 const path = require("path");
+require("dotenv").config()
+
 
 const app = express();
 app.use(cors());
@@ -15,7 +17,13 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "client", "build")))
 
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://Jithin_88jeevan:071263%40Jj@cluster0.x0rbw.mongodb.net/myCountApp?retryWrites=true&w=majority")
+mongoose.connect(process.env.MONGODB_CONNECTION_STRING,
+  {
+      useNewUrlParser:true,
+      useUnifiedTopology: true
+  }
+  );
+
 
 
 app.post("/api/register", async (req, res) => {
