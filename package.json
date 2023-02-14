@@ -1,15 +1,20 @@
 {
-  "name": "server",
+  "name": "count-app-server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     
     "start": "node server.js",
-    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
+      "server": "nodemon server.js",
+      "client": "npm start --prefix client",
+      "clientinstall": "npm install --prefix client",
+      "dev": "concurrently \"npm run server\" \"npm run client\"",
+      "render-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build -- prefix client"
   },
   "engines": {
-    "node": "16.16.0"
+    "node": "16.16.0",
+    "npm": "8.11.0"
   },
   "author": "Jithin",
   "license": "ISC",
